@@ -1,7 +1,7 @@
 <?php
 function hitung_bmi($berat_badan, $tinggi_badan) {
-    $tinggi_meter = $tinggi_badan / 100;
-    $bmi = $berat_badan / ($tinggi_meter ** 2);
+    $tinggi_meter = $tinggi_badan;
+    $bmi = $berat_badan / ($tinggi_meter * $tinggi_meter);
     return $bmi;
 }
 
@@ -13,9 +13,9 @@ function kategori_bmi($bmi){
     } elseif ($bmi >= 18.5 && $bmi <= 25.0){
         return "Normal";
     } elseif ($bmi >= 25.1 && $bmi <= 27.0){
-        return "gemuk, Kekurangan berat badan ringan";
+        return "Gemuk, Kekurangan berat badan ringan";
     } else {
-        return "Gemuk, Obesitas";
+        return "Gemuk, Kelebihan berat badan berat";
     }
 }
 
@@ -34,8 +34,6 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulator IMT</title>
 </head>
 <body>
@@ -45,11 +43,11 @@ if (isset($_POST['submit'])) {
             <form method="post">
                 <div class="mb-2">
                 <label class="form-label">Berat badan</label>
-                    <input type="text" name="berat_badan" class="form-control form-control-sm" step="any" required>
+                    <input type="number" name="berat_badan" step="any" class="form-control form-control-sm" placeholder="Masukin bb" required>
                 </div>
                 <div class="mb-2">
                 <label class="form-label">Tinggi badan</label>
-                    <input type="text" name="tinggi_badan" class="form-control form-control-sm" step="any" required>
+                    <input type="number" name="tinggi_badan" step="any" class="form-control form-control-sm" required placeholder="Masukin tb">
                 </div>
                 <button type="submit" name="submit" class="btn btn-secondary btn-sm w-100">Hitung</button>
             </form>
